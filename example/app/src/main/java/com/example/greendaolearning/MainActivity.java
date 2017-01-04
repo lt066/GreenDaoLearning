@@ -57,6 +57,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * 插入数据
+     * @param test0
+     */
     public void insertTest0(Test0 test0){
         if(test0.getDatetime()<=0){
             test0.setDatetime(System.currentTimeMillis());
@@ -68,6 +72,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             test0Dao.insert(test222);
         }
     }
+
+    /**
+     * 更新数据
+     * @param name
+     * @param newName
+     */
     public void updataTest0(String name,String newName){
         QueryBuilder<Test0> qb = test0Dao.queryBuilder();
         if(name!=null && !name.equals("")){
@@ -81,6 +91,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
         }
     }
+
+    /**
+     * 删除数据
+     * @param name
+     * @return
+     */
     public List<Test0> deleteTest0(String name){
         QueryBuilder<Test0> qb = test0Dao.queryBuilder();
         List<Test0> list=null;
@@ -100,6 +116,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return list;
     }
 
+    /**
+     * 查询数据
+     * @param name
+     * @return
+     */
     public List<Test0> queryTest0(String name){
         QueryBuilder<Test0> qb = test0Dao.queryBuilder();
         List<Test0> list=null;
@@ -113,10 +134,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return list;
     }
 
+    /**
+     * 获取全部数据
+     * @param condition
+     * @return
+     */
     public List<Test0> getDbList(String condition){
         QueryBuilder<Test0> qb = test0Dao.queryBuilder();
         if(condition!=null && !condition.equals("")){
             qb.where(Test0Dao.Properties.Username.eq(condition));
+           /* qb.offset(0);//分页开始index
+            qb.limit(5);//每页数量*/
         }
         qb.orderDesc(Test0Dao.Properties.Datetime);
         List<Test0> list = qb.list();
@@ -156,6 +184,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * list adapter
+     */
     private class MyAdapter extends BaseAdapter{
 
         @Override
